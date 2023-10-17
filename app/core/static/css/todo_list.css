@@ -1,0 +1,6 @@
+.strike_none{
+  text-decoration: none;
+}
+.selected_task{
+  background-color: #C2410C !important;
+}

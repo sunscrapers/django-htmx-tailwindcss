@@ -1,0 +1,11 @@
+-r base.in
+
+django-extensions==3.2.3
+
+pytest==7.4.2
+pytest-cov==4.1.0
+pytest-django==4.5.2
+Faker
+
+ipdb
+ipython

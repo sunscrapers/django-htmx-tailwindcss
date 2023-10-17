@@ -1,0 +1,24 @@
+<li class="mt-4" id="task-item-{{ task.id }}">
+    <div class="flex gap-2">
+        <div class="w-9/12 h-12 bg-orange-500 rounded-[7px] flex justify-start items-center px-3">
+            <form
+                id="check{{ task.id }}"
+                hx-post="{% url "todo-tracker:ajax-task-delete" task_id=task.id %}"
+                hx-target="#task-item-{{ task.id }}"
+                hx-swap="delete"
+                hx-trigger="click delay:300ms"
+                class="w-7 h-7 bg-white rounded-full border border-white transition-all cursor-pointer hover:border-orange-200 flex justify-center items-center"
+                onclick="checked({{ task.id }})"
+            >
+                <i class="text-white fa fa-check"></i>
+            </form>
+            <strike id="strike{{ task.id }}" class="strike_none text-sm ml-4 text-white font-semibold"
+                >{{ task.value }}</strike
+            >
+        </div>
+        <span
+            class="w-1/4 h-12 p3 bg-orange-500 rounded-[7px] flex justify-center text-xs text-white font-semibold items-center"
+            >{{ task.created_at|date:"g:i a" }}<br />{{ task.created_at|date:"d/m/Y" }}
+        </span>
+    </div>
+</li>

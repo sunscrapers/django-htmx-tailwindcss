@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static%}
+
+{% block head_extra %}
+    <link rel="stylesheet" href="{% static 'css/todo_list.css' %}">
+    <script src="{% static 'js/todo_list.js' %}"></script>
+{% endblock head_extra %}
+{% block content %}
+    <div class="flex justify-center items-center min-h-screen bg-orange-50">
+        <div class="h-auto  w-96 bg-white rounded-[20px] p-4">
+            <div class="mt-3 text-sm text-orange-300 flex justify-between items-center">
+                <p class="set_date">{% now "l d F" %}</p>
+                <p class="set_time">{% now "h:i a" %}</p>
+            </div>
+            <p class="text-xl font-semibold mt-2 text-orange-700">To-do List</p>
+            <div class="w-full mt-2 flex text-sm flex-col text-center justify-center ">
+                <div class=" px-[15px] flex justify-between text-center items-center">
+                    {% for day in days %}
+                        <p>{{ day|date:"D" }}</p>
+                    {% endfor %}
+                </div>
+                <div class="w-full pl-1 flex justify-between text-center items-center">
+                    {% for day in days %}
+                        <span class="h-7 w-7 rounded-full cursor-pointer transition-all hover:bg-orange-700 hover:text-white bg-white flex justify-center items-center"><p>{{ day|date:"d" }}</p></span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% include "partials/tasks_list.html" with object_list=task_list %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,21 @@
+<ul id="tasks-list" class="my-4">
+    <li class="mt-4" id="6">
+        <form class="flex gap-2" hx-post="{% url "todo-tracker:ajax-task-create" %}" hx-target="#tasks-list" hx-swap="outerHTML">
+            <div class="w-9/12 h-12 bg-orange-500 rounded-[7px] flex justify-start items-center px-3">
+                <input
+                    name="value" type="text"
+                    class="w-full p-1 text-orange-700 placeholder:text-slate-300 focus:outline-none focus-visible:ring-orange-300 font-semibold rounded-[7px]"
+                    placeholder="Add new task"
+                    autofocus
+                    required
+                />
+            </div>
+            <button
+                class="w-1/4 h-12 bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 rounded-[7px] flex justify-center text-sm text-white font-semibold items-center"
+            >
+                Add
+            </button>
+        </form>
+    </li>
+    {% for task in object_list %} {% include "partials/task_item.html" with task=task %} {% endfor %}
+</ul>

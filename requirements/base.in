@@ -1,0 +1,4 @@
+Django==4.2.5
+markdown==3.4.4
+
+psycopg2-binary==2.9.7
