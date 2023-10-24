@@ -1,0 +1,17 @@
+<p
+  hx-get="{% url 'advanced-htmx:product-random-ajax' %}"
+  {% if request.headers.hx_request %}
+    hx-trigger="load delay:1s"
+  {% else %}
+    hx-trigger="load delay:3s"
+  {% endif %}
+  hx-swap="outerHTML"
+  class="m-2 font-semibold text-gray-950 dark:text-white"
+>
+  Random product every 1s:
+  {% if random_product %}
+    {{ random_product }}
+  {% else %}
+    <img class="inline w-8" src="https://htmx.org/img/bars.svg" alt="Result loading..."/>
+  {% endif%}
+</p>

@@ -27,6 +27,8 @@ urlpatterns = [
     # Apps
     # todo_tracker
     path("", include("todo_tracker.urls", namespace="todo-tracker")),
+    # advanced_htmx
+    path("advanced/", include("advanced_htmx.urls", namespace="advanced-htmx")),
 ]
 
 if settings.DEBUG:

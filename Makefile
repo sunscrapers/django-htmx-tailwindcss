@@ -1,3 +1,4 @@
+.PHONY: update-deps build up down attach bash shell migrate migrations collectstatic run-build run tests circleci-up circleci-tests
 update-deps:
 	pip install -U pip && pip install pip-tools
 

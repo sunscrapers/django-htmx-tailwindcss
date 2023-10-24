@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% endblock head_extra %}
+
+{% block content %}
+    {% include "advanced_htmx/partials/table_header.html" %}
+    <section class="container mx-auto">
+      {% include "advanced_htmx/mini_partials/product_random_event.html" %}
+      {% include "advanced_htmx/mini_partials/product_random.html" %}
+      {% include "advanced_htmx/mini_partials/products_counter.html" with page_number=page_obj.number %}
+    </section>
+    {% include "advanced_htmx/partials/table_products_list.html" %}
+    {% include "advanced_htmx/partials/table_footer.html" %}
+{% endblock content %}
