@@ -1,0 +1,25 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="htmx-config" content='{"includeIndicatorStyles": false}'>
+
+    <title>{% block title %}Example Web page{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tailwind-output.css' %}">
+
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+
+    {% block head_extra %}{% endblock head_extra %}
+  </head>
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% include "advanced_htmx/partials/header.html" %}
+    {% block content %}{% endblock content %}
+    {% include "advanced_htmx/partials/footer.html" %}
+  </body>
+</html>

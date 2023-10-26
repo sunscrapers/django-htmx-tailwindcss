@@ -1,7 +1,10 @@
+from django.shortcuts import render
 from django.template.response import TemplateResponse
+from django.views.generic import CreateView
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 
+from advanced_htmx.models import Car
 from advanced_htmx.models import Product
 
 
@@ -29,3 +32,25 @@ class RandomProductAjax(TemplateView):
 
 class RandomProductEventAjax(RandomProductAjax):
     template_name = "advanced_htmx/mini_partials/product_random_event.html"
+
+
+class CarCreateAjax(CreateView):
+    model = Car
+    fields = ("name", "price", "photo")
+    template_name = "advanced_htmx/partials/car_create.html"
+    success_template_name = "advanced_htmx/partials/success_car_create.html"
+
+    def get_success_url(self):
+        # Not used, required by Django generic view
+        return "/success_url"
+
+    def post(self, request, *args, **kwargs):
+        response: TemplateResponse = super().post(request, *args, **kwargs)
+
+        if response.url == self.get_success_url():
+            return render(
+                request,
+                self.success_template_name,
+            )
+
+        return response
