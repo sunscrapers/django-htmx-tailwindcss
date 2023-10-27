@@ -1,7 +1,8 @@
 {% extends "advanced_htmx/base.html" %}
+{% load static %}
 
 {% block head_extra %}
-  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+  <script src="{% static 'js/htmx_ext_ws.js' %}"></script>
 {% endblock head_extra %}
 
 {% block content %}
