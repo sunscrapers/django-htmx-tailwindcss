@@ -1,12 +1,12 @@
 <p
   hx-get="{% url 'advanced-htmx:product-random-event-ajax' %}"
   {% if request.headers.hx_request %}
-    hx-trigger="{{ htmx_triggers.PRODUCTS_LIST_PAGE_CHANGED }} from:body"
+    hx-trigger="{{ htmx_triggers.products_list_page_changed }} from:body"
   {% else %}
     hx-trigger="load delay:2.5s"
   {% endif %}
   hx-swap="outerHTML"
-  class="m-2 font-semibold text-gray-950 dark:text-white"
+  class="m-2 font-semibold text-gray-950"
 >
   Random product when custom event(changed page):
   {% if random_product %}

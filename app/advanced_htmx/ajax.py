@@ -1,9 +1,14 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.response import TemplateResponse
 from django.views.generic import CreateView
+from django.views.generic import FormView
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 
+from advanced_htmx.forms import ChatMessageForm
+from advanced_htmx.handlers import ChatHandler
+from advanced_htmx.handlers import ChatMessage
 from advanced_htmx.models import Car
 from advanced_htmx.models import Product
 
@@ -40,17 +45,30 @@ class CarCreateAjax(CreateView):
     template_name = "advanced_htmx/partials/car_create.html"
     success_template_name = "advanced_htmx/partials/success_car_create.html"
 
-    def get_success_url(self):
-        # Not used, required by Django generic view
-        return "/success_url"
+    def form_valid(self, request, form):
+        return render(
+            self.request,
+            self.success_template_name,
+        )
 
     def post(self, request, *args, **kwargs):
-        response: TemplateResponse = super().post(request, *args, **kwargs)
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(request, form)
+        else:
+            return self.form_invalid(form)
 
-        if response.url == self.get_success_url():
-            return render(
-                request,
-                self.success_template_name,
-            )
 
-        return response
+class ChatAjax(FormView):
+    template_name = "advanced_htmx/partials/chat_messages_form.html"
+    http_method_names = ["post"]
+    form_class = ChatMessageForm
+
+    def form_valid(self, form):
+        message: ChatMessage = ChatMessage(
+            signature=form.cleaned_data["signature"],
+            text=form.cleaned_data["text"],
+        )
+        ChatHandler.save_message(message=message)
+
+        return HttpResponse(status=204)

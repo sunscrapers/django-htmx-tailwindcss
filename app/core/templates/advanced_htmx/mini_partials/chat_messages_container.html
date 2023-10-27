@@ -1,0 +1,16 @@
+<div
+  id="chat-messages-container"
+  hx-ext="ws"
+  ws-connect="/ws/chatroom"
+  hx-swap-oob="beforeend"
+  class="m-4"
+>
+  {% for msg in messages %}
+    <div
+      class="flex items-center w-full max-w-xs mb-3 p-4 text-gray-500 bg-white rounded-lg shadow"
+      role="alert"
+    >
+      <div class="ml-3 text-sm font-normal"><span class="font-semibold">{{ msg.signature }}: </span>{{ msg.text }}</div>
+    </div>
+  {% endfor %}
+</div>

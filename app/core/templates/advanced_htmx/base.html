@@ -17,7 +17,7 @@
 
     {% block head_extra %}{% endblock head_extra %}
   </head>
-  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <body class="container mx-auto" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% include "advanced_htmx/partials/header.html" %}
     {% block content %}{% endblock content %}
     {% include "advanced_htmx/partials/footer.html" %}

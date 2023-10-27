@@ -1,5 +1,12 @@
 from enum import Enum
 
+# Websockets
+CHAT_WS_GROUP_NAME = "chatroom"
+
+
+class EventType:
+    chat_message = "chat_message"
+
 
 class HTMXTriggers(Enum):
-    PRODUCTS_LIST_PAGE_CHANGED = "products-list-page-changed"
+    products_list_page_changed = "products-list-page-changed"

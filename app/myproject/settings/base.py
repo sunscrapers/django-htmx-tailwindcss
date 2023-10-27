@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",  # Third party
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
     "core",
     "todo_tracker",
     "advanced_htmx",
+    # Third party
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -76,7 +79,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "myproject.wsgi.application"
+ASGI_APPLICATION = "myproject.asgi.application"
+
+# Channels
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    }
+}
 
 
 # Database

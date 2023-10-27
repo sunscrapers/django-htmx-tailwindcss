@@ -3,3 +3,4 @@ markdown==3.4.4
 Pillow==10.1.0
 
 psycopg2-binary==2.9.7
+channels[daphne]==4.0.0

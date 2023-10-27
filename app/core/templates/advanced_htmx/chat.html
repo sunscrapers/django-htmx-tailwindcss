@@ -1,0 +1,12 @@
+{% extends "advanced_htmx/base.html" %}
+
+{% block head_extra %}
+  <script src="https://unpkg.com/htmx.org/dist/ext/ws.js"></script>
+{% endblock head_extra %}
+
+{% block content %}
+  <main class="m-4">
+    {% include "advanced_htmx/mini_partials/chat_messages_container.html" %}
+    {% include "advanced_htmx/partials/chat_messages_form.html" %}
+  </main>
+{% endblock content %}
