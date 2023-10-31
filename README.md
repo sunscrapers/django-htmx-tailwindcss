@@ -65,6 +65,8 @@ This app showcases the advanced capabilities of HTMX, making your web applicatio
 
 ### 1. Interactive Tables with Pagination
 
+![Table with Pagination](screenshots/table_screen.png)
+
 Here you'll find interactive tables with features such as:
 
 - **hx-swap-oob:** We use the `hx-swap-oob` attribute to update specific parts of the page without reloading the entire page, enhancing the user experience.
@@ -75,9 +77,13 @@ Here you'll find interactive tables with features such as:
 
 ### 2. File Uploads with Django Forms
 
+![File Upload with Django Forms](screenshots/car_create_screen.png)
+
 We've streamlined file uploads in your Django application using HTMX. Our project demonstrates how to easily handle file uploads with HTML forms and the `hx-encoding` attribute set to "multipart/form-data" This feature works seamlessly with Django forms, making it a breeze to implement file upload functionality.
 
 ### 3. Real-Time Chat with Django Channels
+
+![Real-Time Chat with Django Channels](screenshots/chat_screen.png)
 
 Take your communication to the next level with real-time chat functionality powered by Django Channels. Our chat feature showcases the integration of WebSockets and HTMX, enabling instantaneous messaging and interactions between users.
 
