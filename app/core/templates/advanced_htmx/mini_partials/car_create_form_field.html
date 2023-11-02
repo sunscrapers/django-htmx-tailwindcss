@@ -1,0 +1,24 @@
+<div class="mb-6">
+  <label for="{{ label_for }}" class="block mb-2 text-sm font-medium text-gray-900">{{ label }}</label>
+  <input
+    {% if input_type %}type="{{ input_type }}"{% endif %}
+    {% if input_id %}id="{{ input_id }}"{% endif %}
+    {% if input_name %}name="{{ input_name }}"{% endif %}
+    {% if input_class %}
+      class="{{ input_class }}"
+    {% else %}
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+    {% endif %}
+    {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}
+    {% if input_value %}value="{{ input_value }}"{% endif %}
+    {% if input_step %}step="{{ input_step }}"{% endif %}
+    {% if input_required %}required{% endif %}
+  />
+  {% if errors %}
+    {% for error in errors %}
+      <p class="mt-2 text-sm text-red-600">
+        {{ error }}
+      </p>
+    {% endfor %}
+  {% endif %}
+</div>

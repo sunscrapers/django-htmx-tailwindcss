@@ -4,55 +4,12 @@
   hx-swap="outerHTML"
   hx-encoding="multipart/form-data"
 >
-  <div class="mb-6">
-    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Car name</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      placeholder="Car"
-      value="{{ form.name.value }}"
-      required
-    />
-    {% if form.errors.name %}
-      {% for error in form.errors.name %}
-        <p class="mt-2 text-sm text-red-600">
-          {{ error }}
-        </p>
-      {% endfor %}
-    {% endif %}
-  </div>
-  <div class="mb-6">
-    <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Car price</label>
-    <input
-      type="number"
-      step=".01"
-      name="price"
-      id="price"
-      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-      value="{{ form.price.value }}"
-      required
-    />
-    {% if form.errors.price %}
-      {% for error in form.errors.price %}
-        <p class="mt-2 text-sm text-red-600">
-          {{ error }}
-        </p>
-      {% endfor %}
-    {% endif %}
-  </div>
-  <div class="mb-6">
-    <label class="block mb-2 text-sm font-medium text-gray-900" for="photo">Car Photo</label>
-    <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50focus:outline-none" id="photo" name="photo" type="file">
-    {% if form.errors.photo %}
-      {% for error in form.errors.photo %}
-        <p class="mt-2 text-sm text-red-600">
-          {{ error }}
-        </p>
-      {% endfor %}
-    {% endif %}
-  </div>
+  {% comment %} Car name field {% endcomment %}
+  {% include "advanced_htmx/mini_partials/car_create_form_field.html" with label_for="name" label="Car name" input_type="text" input_id="name" input_name="name" input_placeholder="Car" input_value=form.name.value input_required="true" errors=form.errors.name %}
+  {% comment %} Car price field {% endcomment %}
+  {% include "advanced_htmx/mini_partials/car_create_form_field.html" with label_for="price" label="Car price" input_type="number" input_id="price" input_name="price" input_value=form.price.value input_step=".01" input_required="true" errors=form.errors.price %}
+  {% comment %} Car photo field {% endcomment %}
+  {% include "advanced_htmx/mini_partials/car_create_form_field.html" with label_for="photo" label="Car photo" input_type="file" input_id="photo" input_name="photo" input_class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50focus:outline-none" errors=form.errors.photo %}
   <button
     type="submit"
     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"

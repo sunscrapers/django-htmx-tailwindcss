@@ -6,6 +6,7 @@ from django.views.generic import FormView
 from django.views.generic import TemplateView
 from django.views.generic.list import ListView
 
+from advanced_htmx.constants import HTMXTriggers
 from advanced_htmx.forms import ChatMessageForm
 from advanced_htmx.handlers import ChatHandler
 from advanced_htmx.handlers import ChatMessage
@@ -22,7 +23,7 @@ class TableProductsListAjax(ListView):
 
     def get(self, request, *args, **kwargs) -> TemplateResponse:
         response: TemplateResponse = super().get(request, *args, **kwargs)
-        response["HX-Trigger"] = "products-list-page-changed"
+        response["HX-Trigger"] = HTMXTriggers.products_list_page_changed.value
         return response
 
 
@@ -44,6 +45,7 @@ class CarCreateAjax(CreateView):
     fields = ("name", "price", "photo")
     template_name = "advanced_htmx/partials/car_create.html"
     success_template_name = "advanced_htmx/partials/success_car_create.html"
+    object = None
 
     def form_valid(self, request, form):
         return render(
