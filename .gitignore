@@ -165,3 +165,4 @@ node_modules
 .vscode
 tailwind-output.css
 htmx.min.js
+media/

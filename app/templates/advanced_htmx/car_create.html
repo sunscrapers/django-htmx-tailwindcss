@@ -1,0 +1,10 @@
+{% extends "advanced_htmx/base.html" %}
+{% load static %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'css/table.css' %}" />
+{% endblock head_extra %}
+
+{% block content %}
+  {% include "advanced_htmx/partials/car_create.html" %}
+{% endblock content %}

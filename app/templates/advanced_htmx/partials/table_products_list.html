@@ -1,0 +1,76 @@
+<main id="table-products-list" class="m-4 transition-all">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">Product name</th>
+          <th scope="col" class="px-6 py-3">Color</th>
+          <th scope="col" class="px-6 py-3">Category</th>
+          <th scope="col" class="px-6 py-3">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if object_list %}
+          {% for product in object_list %}
+            {% include "advanced_htmx/partials/table_product_item.html" %}
+          {% endfor %}
+        {% else %}
+          <tr class="bg-white border-b">
+            <th colspan="4" scope="row" class="text-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+              <p class="text-xl italic font-semibold text-gray-900 dark:text-white">
+                Nothing to show here. Go to the
+                <a
+                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  href="http://localhost:8000/admin/advanced_htmx/product/"
+                  >admin panel</a
+                >
+                and add some products
+              </p>
+            </th>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex flex-col items-center">
+    {% if page_obj.has_next or page_obj.has_previous %}
+      <div class="inline-flex mt-2 xs:mt-0">
+        {% if page_obj.has_previous %}
+          <a
+            hx-get="{% url 'advanced-htmx:table-products-list-ajax' %}?page={{ page_obj.previous_page_number }}"
+            hx-target="#table-products-list"
+            hx-swap="outerHTML swap:50ms"
+            hx-disabled-elt="this"
+            {% if page_obj.previous_page_number > 1 %}
+                hx-replace-url="{% url 'advanced-htmx:table' %}?page={{ page_obj.previous_page_number }}"
+            {% else %}
+                hx-replace-url="{% url 'advanced-htmx:table' %}"
+            {% endif %}
+            href="#"
+            class="flex items-center justify-center px-4 h-10 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+          >
+            Previous
+          </a>
+        {% endif %}
+        {% if page_obj.has_next %}
+          <a
+            hx-get="{% url 'advanced-htmx:table-products-list-ajax' %}?page={{ page_obj.next_page_number }}"
+            hx-target="#table-products-list"
+            hx-swap="outerHTML swap:50ms"
+            hx-disabled-elt="this"
+            hx-replace-url="{% url 'advanced-htmx:table' %}?page={{ page_obj.next_page_number }}"
+            href="#"
+            class="flex items-center justify-center px-4 h-10 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+          >
+            Next
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</main>
+
+{% if request.headers.hx_request %}
+  <span id="products-list-counter" hx-swap-oob="true">{{ page_obj.number }}</span>
+{% endif %}

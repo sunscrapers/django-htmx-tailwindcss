@@ -11,16 +11,16 @@
   "watch": {
     "build:tailwindcss": {
       "patterns": [
-        "./app/core/static/**/*.{html,js}",
-        "./app/core/templates/**/*.{html,js}"
+        "./app/myproject/static/**/*.{html,js}",
+        "./app/myproject/templates/**/*.{html,js}"
       ],
       "extensions": "html,js",
       "quiet": false
     }
   },
   "scripts": {
-    "build:tailwindcss": "postcss ./app/core/static/css/tailwind-input.css -o ./app/core/static/css/tailwind-output.css",
-    "build:htmx": "cp node_modules/htmx.org/dist/htmx.min.js ./app/core/static/js/htmx.min.js",
+    "build:tailwindcss": "postcss ./app/myproject/static/css/tailwind-input.css -o ./app/myproject/static/css/tailwind-output.css",
+    "build:htmx": "cp node_modules/htmx.org/dist/htmx.min.js ./app/myproject/static/js/htmx.min.js",
     "watch:tailwindcss": "npm-watch build:tailwindcss"
   }
 }
