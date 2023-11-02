@@ -1,14 +1,14 @@
 <p
   hx-get="{% url 'advanced-htmx:product-random-ajax' %}"
   {% if request.headers.hx_request %}
-    hx-trigger="load delay:1s"
+    hx-trigger="load delay:10s"
   {% else %}
     hx-trigger="load delay:3s"
   {% endif %}
   hx-swap="outerHTML"
   class="m-2 font-semibold text-gray-950"
 >
-  Random product every 1s:
+  Random product every 10s:
   {% if random_product %}
     {{ random_product }}
   {% else %}

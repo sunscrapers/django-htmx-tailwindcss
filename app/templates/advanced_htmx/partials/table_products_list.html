@@ -10,9 +10,25 @@
         </tr>
       </thead>
       <tbody>
-        {% for product in object_list %}
-          {% include "advanced_htmx/partials/table_product_item.html" %}
-        {% endfor %}
+        {% if object_list %}
+          {% for product in object_list %}
+            {% include "advanced_htmx/partials/table_product_item.html" %}
+          {% endfor %}
+        {% else %}
+          <tr class="bg-white border-b">
+            <th colspan="4" scope="row" class="text-center px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+              <p class="text-xl italic font-semibold text-gray-900 dark:text-white">
+                Nothing to show here. Go to the
+                <a
+                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  href="http://localhost:8000/admin/advanced_htmx/product/"
+                  >admin panel</a
+                >
+                and add some products
+              </p>
+            </th>
+          </tr>
+        {% endif %}
       </tbody>
     </table>
   </div>
