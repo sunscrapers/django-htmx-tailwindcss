@@ -12,7 +12,7 @@
     "build:tailwindcss": {
       "patterns": [
         "./app/myproject/static/**/*.{html,js}",
-        "./app/myproject/templates/**/*.{html,js}"
+        "./app/templates/**/*.{html,js}"
       ],
       "extensions": "html,js",
       "quiet": false
